@@ -24,11 +24,8 @@ jobs:
   build:
     needs: run-unit-tests
     name: Build and push image
-    runs-on: ubuntu-20.04
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
     - name: Build Image
       id: build-image
       uses: redhat-actions/buildah-build@v2
