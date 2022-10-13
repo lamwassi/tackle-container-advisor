@@ -20,15 +20,28 @@ jobs:
         id: run-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
-   
-      - name: Build and push to quay.io registry
-        uses: sclorg/build-and-push-action@v2
+ 
+      - name: Build Image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
         with:
-          registry: "quay.io"
-          registry_namespace: "lam_quay"
-          registry_username: ${{ secrets.REGISTRY_LOGIN }}
-          registry_token: ${{ secrets.REGISTRY_TOKEN }}
-          dockerfile: "./Dockerfile"
-          image_name: "konveyor-tackle-container-advisor"
-          tag: "latest"
-  
+          image: konveyor-tca
+          tags: latest ${{ github.sha }}
+          containerfiles: |
+            ./Dockerfile
+
+      # Podman Login action (https://github.com/redhat-actions/podman-login) also be used to log in,
+      # in which case 'username' and 'password' can be omitted.
+      - name: Push To quay.io
+        id: push-to-quay
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: quay.io/lam_quay
+          username: lam_quay
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Print image url
+        run: echo "Image pushed to ${{ steps.push-to-quay.outputs.registry-paths }}"
+    
