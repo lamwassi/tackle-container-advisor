@@ -26,8 +26,8 @@ jobs:
     name: "publish to quay.io"
     runs-on: "ubuntu-latest"
     steps: 
-        - name: "print pwd"
-          run: pwd
+        - name: "Change directory"
+          run: cd ..
            
         - name: Build Image
           id: build-image
