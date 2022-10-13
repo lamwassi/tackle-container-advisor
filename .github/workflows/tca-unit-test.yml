@@ -36,7 +36,7 @@ jobs:
             image: konveyor-tca
             tags: latest ${{ github.sha }}
             containerfiles: |
-              ./Dockerfile
+              ../Dockerfile
 
         # Podman Login action (https://github.com/redhat-actions/podman-login) also be used to log in,
         # in which case 'username' and 'password' can be omitted.
