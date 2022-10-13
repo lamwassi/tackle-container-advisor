@@ -20,11 +20,7 @@ jobs:
         id: run-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
-          
-  publish-to-quay:
-    needs: "run-unit-tests"
-    runs-on: ubuntu-20.04
-    steps:
+   
       - name: Build and push to quay.io registry
         uses: sclorg/build-and-push-action@v2
         with:
