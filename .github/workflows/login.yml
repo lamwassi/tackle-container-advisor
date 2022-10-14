@@ -19,11 +19,14 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
-      
-      - name : "build image"
-        run : docker build  -t tackle-container-advisor ./Dockerfile
-      - name : push to quay 
-        run : docker push tackle-container-advisor
-
-
-  # Now you can push images, and pull private ones, from quay.io as 'quayuser'.
+      - name : list containers
+        run  : docker ps
+      - name : list container images
+        run  :  docker images 
+      - name : list current directory
+        run  : pwd  && ls 
+        
+      - name : change dir
+        run  : cd /home/runner/work/
+      - name : list content
+        run  : ls -al 
