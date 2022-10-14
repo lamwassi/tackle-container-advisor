@@ -20,7 +20,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
       - name : list directory
-        run  : ls /home/runner/work/tackle-container-advisor/tackle-container-advisor 
+        run  : docker ps
     
       
     
