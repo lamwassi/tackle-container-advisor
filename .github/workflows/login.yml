@@ -20,7 +20,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
       - name : list directory
-        run  : ls -al 
+        run  : pwd
     
 
   # Now you can push images, and pull private ones, from quay.io as 'quayuser'.
