@@ -35,9 +35,8 @@ jobs:
       - name : list containers
         run  : docker ps
       - name : list container images
-        run  :  docker images 
-      - name : build image
-        run  : docker build -t tackle-container-advisor ./Dockerfile 
-      - name : push to quay
-        run  : docker push  tackle-container-advisor
+        run  :  docker images
+      - name : run cli
+        run  : python tca_cli.py
       
+        
