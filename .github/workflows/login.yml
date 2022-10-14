@@ -27,7 +27,7 @@ jobs:
         run  : pwd  && ls 
         
       - name : change dir
-        run  : cd /home/runner/work/
+        run  : cd /home
       - name : list content
         run  : ls -al 
       - name : print author
