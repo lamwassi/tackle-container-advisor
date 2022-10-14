@@ -10,9 +10,19 @@ env:
 jobs:
   login:
 
+
+    
+
     name: Log in to image registry
     runs-on: ubuntu-20.04
     steps:
+
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
       - name: Log in to Quay.io
         uses: redhat-actions/podman-login@v1
         with:
@@ -23,13 +33,8 @@ jobs:
         run  : docker ps
       - name : list container images
         run  :  docker images 
-      - name : list current directory
-        run  : pwd  && ls 
-        
-      - name : change dir
-        run  : cd /home
-      - name : list content
-        run  : ls -al 
-      - name : print author
-        run  : echo lambert
-        
+      - name : build image
+        run  : docker build -t tackle-container-advisor ./Dockerfile 
+      - name : push to quay
+        run  : docker push  tackle-container-advisor
+    
