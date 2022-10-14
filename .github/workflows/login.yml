@@ -19,11 +19,10 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
-      - name : change directory
-        run  : cd  /home/runner/work/tackle-container-advisor/
       - name : list directory
-        run : ls 
-        
+        run  : ls /home/runner/work/tackle-container-advisor/
+    
+      
     
 
   # Now you can push images, and pull private ones, from quay.io as 'quayuser'.
