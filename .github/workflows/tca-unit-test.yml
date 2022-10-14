@@ -38,7 +38,9 @@ jobs:
         run  :  docker images
       - name : build image
         run  : docker build -t tca .
-      - name : push image
-        run  : docker push tca:latest
+      - name : tag image
+        run  : docker tag tca:latest  tackle-container-advisor:latest
+      - name : push to quay
+        run  : docker push tackle-container-advisor:latest
       
         
