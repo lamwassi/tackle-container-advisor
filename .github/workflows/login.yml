@@ -19,8 +19,13 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
-      - name : list directory
+      - name : list containers
         run  : docker ps
+      - name : list container images
+        run  :  docker images 
+      - name : list current directory
+        run  : pwd  && ls 
+    
     
       
     
