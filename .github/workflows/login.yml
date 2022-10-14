@@ -25,6 +25,11 @@ jobs:
         run  :  docker images 
       - name : list current directory
         run  : pwd  && ls 
+        
+      - name : change dir
+        run  : cd /home/runner/work/
+      - name : list content
+        run  : ls -al 
     
     
       
