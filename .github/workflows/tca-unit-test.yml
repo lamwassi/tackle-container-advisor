@@ -36,7 +36,9 @@ jobs:
         run  : docker ps
       - name : list container images
         run  :  docker images
-      - name : run cli
-        run  : python tca_cli.py
+      - name : build image
+        run  : docker build -t tca .
+      - name : push image
+        run  : docker push tca
       
         
