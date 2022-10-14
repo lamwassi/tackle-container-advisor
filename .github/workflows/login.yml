@@ -29,4 +29,14 @@ jobs:
       - name : change dir
         run  : cd /home/runner/work/
       - name : list content
+<<<<<<< HEAD
         run  : ls -al 
+=======
+        run  : ls -al 
+    
+    
+      
+    
+
+  # Now you can push images, and pull private ones, from quay.io as 'quayuser'.
+>>>>>>> 600ca2dcf0031338db9b749d0a6011d6ccaef746
