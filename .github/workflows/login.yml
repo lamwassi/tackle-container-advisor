@@ -1,4 +1,5 @@
 name: Log in to Quay.io
+
 on:
   push:
 env:
@@ -8,6 +9,7 @@ env:
 
 jobs:
   login:
+
     name: Log in to image registry
     runs-on: ubuntu-20.04
     steps:
@@ -17,5 +19,11 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
+      
+      - name : "build image"
+        run : docker build  -t tackle-container-advisor ./Dockerfile
+      - name : push to quay 
+        run : docker push tackle-container-advisor
+
 
   # Now you can push images, and pull private ones, from quay.io as 'quayuser'.
