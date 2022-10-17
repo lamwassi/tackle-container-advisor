@@ -33,6 +33,12 @@ jobs:
     name: build and publish to registry
     runs-on: ubuntu-latest
     steps:
+    
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
       - name: Log in to Quay.io
         uses: redhat-actions/podman-login@v1
         with:
