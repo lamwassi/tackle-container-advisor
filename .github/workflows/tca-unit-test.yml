@@ -26,16 +26,20 @@ jobs:
         id: run-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
+
+  publish-image-to-quay:
+    
+    needs: run-unit-tests
+    name: build and publish to registry
+    runs-on: ubuntu-latest
+    steps:
       - name: Log in to Quay.io
         uses: redhat-actions/podman-login@v1
         with:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
           registry: ${{ env.IMAGE_REGISTRY }}
-      - name : list containers
-        run  : docker ps
-      - name : list container images
-        run  :  docker images
+
       - name : build image
         run  : docker build -t tca .
       - name : tag image
