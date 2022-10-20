@@ -2,6 +2,8 @@
 
 version="1.0.4"
 db_file="$version.db"
+shopt -u extglob
+
 echo "-----------Cleaning Files and Folders---------"
 
 ##remove files from entity standardization models
@@ -16,7 +18,11 @@ if [ -d kg/ ]; then
 fi
 #remove files from ontologies
 if [ -d kg/ ]; then
-    rm  -rf kg/
+    
+    cd kg/
+    GLOBIGNORE=infer_negative.json
+    rm -v  *
+    cd ..
 fi
 
 ## remove db file from DB
