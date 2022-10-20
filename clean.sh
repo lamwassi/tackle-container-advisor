@@ -9,10 +9,14 @@ if [ -d models/ ]; then
     rm -rf models/
 fi
 
+if [ -d kg/ ]; then
+  #save  infer_negative.json
+  cp kg/infer_negative.json  /app/
+
+fi
 #remove files from ontologies
 if [ -d kg/ ]; then
-    echo "Skipping kg removal for infer_negative.json"
-    # rm  -rf kg/
+    rm  -rf kg/
 fi
 
 ## remove db file from DB
@@ -39,7 +43,7 @@ if [[ -d entity_standardizer/entity_standardizer_tca.egg-info/ ]]; then
 fi
 
 
-## remove logs
+## remove any logs
 rm *.log
 
 echo "-----------Cleaning Completed---------"

@@ -100,8 +100,16 @@ echo "--------------------Generated DB file----------------------"
 ## Generating KG Utility Files
 ######################################################################
 echo "--------------Generating KG Utility Files------------------"
+
+
 $python kg_utils/generator.py
 $python kg_utils/kg_utils.py
+
+if [[ -f ./infer_negative.json ]]; then
+  echo "Remove infer_negative.json  from /app/"
+  rm ./infer_negative.json
+fi
+
 echo "----------------Generated KG Utility Files--------------------"
 
 ######################################################################

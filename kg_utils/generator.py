@@ -22,6 +22,8 @@ import sqlite3
 import time
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
+import shutil
+
 
 class KG():
     def __init__(self, app_name):
@@ -130,7 +132,10 @@ class KG():
         self.get_db(db_path)
 
         os.makedirs(kg_dir, exist_ok=True)
+        
         entities = self.get_entities()
+
+        shutil.copyfile("/app/infer_negative.json", "/app/kg/infer_negative.json")
         entities_file_name = os.path.join(kg_dir, ent_name)
         with open(entities_file_name, 'w', encoding='utf-8') as entities_file:
             json.dump(entities, entities_file, indent=4)
