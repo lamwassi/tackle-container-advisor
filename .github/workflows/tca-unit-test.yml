@@ -1,4 +1,4 @@
-name: Unit test cases for TCA
+name: Unit test and push to konveyor repository
 on: [push,pull_request]
 
 env:
@@ -7,8 +7,8 @@ env:
   REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
 
 jobs:
-  run-unit-tests:
-    name: Run unit test cases
+  run-tests-:
+    name: Testing and publishing 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,8 +35,8 @@ jobs:
       - name : build image
         run  : docker build -t tca .
       - name : tag image
-        run  : docker tag tca:latest  quay.io/lam_quay/tackle-container-advisor:latest
+        run  : docker tag tca:latest  quay.io/konveyor/tackle-container-advisor:latest
       - name : push to quay
-        run  : docker push quay.io/lam_quay/tackle-container-advisor:latest
+        run  : docker push quay.io/konveyor/tackle-container-advisor:latest
       
         
