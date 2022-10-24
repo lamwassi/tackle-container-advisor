@@ -1,14 +1,9 @@
-name: Unit test and push to konveyor repository
+name: Unit tests
 on: [push,pull_request]
 
-env:
-  REGISTRY_USER: lam_quay
-  IMAGE_REGISTRY: quay.io
-  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-
 jobs:
-  run-tests-:
-    name: Testing and publishing 
+  run-unit-tests:
+    name:  tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,17 +21,4 @@ jobs:
         id: run-tests
         run: |
           python -m unittest discover -v -s test -p test_*.py
-      - name: Log in to Quay.io
-        uses: redhat-actions/podman-login@v1
-        with:
-          username: ${{ env.REGISTRY_USER }}
-          password: ${{ env.REGISTRY_PASSWORD }}
-          registry: ${{ env.IMAGE_REGISTRY }}
-      - name : build image
-        run  : docker build -t tca .
-      - name : tag image
-        run  : docker tag tca:latest  quay.io/konveyor/tackle-container-advisor:latest
-      - name : push to quay
-        run  : docker push quay.io/konveyor/tackle-container-advisor:latest
       
-        

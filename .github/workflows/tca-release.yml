@@ -4,6 +4,11 @@ on:
   push:
     tags:
       - "v*.*.*"
+env:
+  REGISTRY_USER: lam_quay
+  IMAGE_REGISTRY: quay.io
+  REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+  
 jobs:
   tagged-release:
     runs-on: ubuntu-latest
