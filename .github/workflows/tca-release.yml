@@ -16,7 +16,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         with:
-          ref: push_to_quay
+          ref: main
       - name: Get release tag
         id: get_release_tag
         run: echo ::set-output name=tag_name::${GITHUB_REF#refs/tags/}
@@ -40,7 +40,7 @@ jobs:
         - name: checkout
           uses: actions/checkout@v2
           with:
-           ref: push_to_quay
+           ref: main
         - name : get tag
           run:  echo ${{needs.tagged-release.get_release_tag}}
         - name: Log in to Quay.io
