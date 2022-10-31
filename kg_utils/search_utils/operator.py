@@ -21,12 +21,8 @@ import json
 import logging
 
 from validator_collection import url
-import load_entities
-
+from . import load_entities
 from sklearn.utils import resample
-
-
-
 
 BASE_ENDPOINT="https://artifacthub.io/api/v1/"
 SEARCH_ENDPOINT = "packages/search"
