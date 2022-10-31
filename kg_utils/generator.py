@@ -23,6 +23,7 @@ import time
 from sqlite3 import Error
 from sqlite3.dbapi2 import Cursor, complete_statement
 
+
 class KG():
     def __init__(self, app_name):
         super().__init__()
@@ -130,7 +131,9 @@ class KG():
         self.get_db(db_path)
 
         os.makedirs(kg_dir, exist_ok=True)
+        
         entities = self.get_entities()
+
         entities_file_name = os.path.join(kg_dir, ent_name)
         with open(entities_file_name, 'w', encoding='utf-8') as entities_file:
             json.dump(entities, entities_file, indent=4)
